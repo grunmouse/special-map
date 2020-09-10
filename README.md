@@ -15,14 +15,14 @@ const {TypedMap, MapOfSet} = require("@grunmouse/special-map");
 
 Переопределяет конструктор и методы get и set.
 
-\@function TypedMap(Ctor, args)\
-* \@param {Function} Ctor - конструктор значения\
+\@function TypedMap(Ctor, args)
+* \@param {Function} Ctor - конструктор значения
 * \@param {Array?} args - необязательный набор параметров, передаваемых в конструктор при создании нового значения в геттере
 * \@returned {Function} - конструктор созданного класса
 
 \@class TypedMap<Ctor, args>
 
-\@constructor(iterable, autoinit)\
+\@constructor(iterable, autoinit)
 * @param {Iterable} iterable? - итерируемый объект, для передачи в конструктор Map
 * @param {Boolean} autoinit? - признак того, что при отсутствии членов их нужно создавать
 \
@@ -49,7 +49,7 @@ const {TypedMap, MapOfSet} = require("@grunmouse/special-map");
 
 \@class MapOfSet == \@class TypedMap<Set, []>;
 
-\@constructor(iterable?, autoinit=true)\
+\@constructor(iterable?, autoinit=true)
 
 Это Map, элементами которого являются наборы (Set).
 Дополнительно определяет метод add и переопределяет @@iterator
