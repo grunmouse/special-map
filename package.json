@@ -1,11 +1,9 @@
 {
   "name": "@grunmouse/special-map",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "format": "cjs",
-  "private": true,
-  "dev": true,
   "engine": {
     "node": ">=9.5.0"
   },
@@ -13,6 +11,7 @@
     "name": "Rakov",
     "email": "grunmouse@mail.ru"
   },
+  "files":["*"],
   "license": "MIT",
   "dependencies": {}
 }
