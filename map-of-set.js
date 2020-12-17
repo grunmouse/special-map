@@ -20,4 +20,8 @@ MapOfSet.prototype[Symbol.iterator] = function*(){
 	}
 }
 
+MapOfSet.prototype.untyped = function(){
+	return new Map(this.entries());
+}
+
 module.exports = MapOfSet;
