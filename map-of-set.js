@@ -24,4 +24,12 @@ MapOfSet.prototype.untyped = function(){
 	return new Map(this.entries());
 }
 
+MapOfSet.prototype.sumsize = function(){
+	let result = 0;
+	for(let set of this.values()){
+		result += set.size;
+	}
+	return result;
+}
+
 module.exports = MapOfSet;
