@@ -1,4 +1,6 @@
 
+const cashedClasses = new WeakMap();
+
 /**
  * @param {Constructor} Ctor - конструктор элементов мапы
  * @param {?Array<any>} args - набор аргументов, передаваемый в конструктор при автодобавлении, 
@@ -6,7 +8,17 @@
  * @returned {Class extends Map}
  */
 function TypedMap(Ctor, args){
-	//args = args || [];
+	
+	let key;
+	if(args == null || !args.length){
+		key = Ctor;
+		if(cashedClasses.has(key)){
+			return cashedClasses.get(key);
+		}
+	}
+	
+	
+	
 	const TMap = class extends Map{
 		
 		/**
@@ -16,9 +28,27 @@ function TypedMap(Ctor, args){
 		 */
 		constructor(iterable, autoinit){
 			if(typeof iterable === 'boolean'){
-				autoinit - iterable;
+				autoinit = iterable;
 				iterable = undefined;
 			}
+			
+			let _args = args;
+			if(Array.isArray(autoinit)){
+				_args = autoinit;
+				autoinit = true;
+			}
+			else{
+				_args = args || [];
+			}
+
+			if(args){
+				autoinit = autoinit !== false;
+			}
+			else{
+				autoinit = autoinit || false;
+			}
+
+			
 			if(iterable){
 				if([...iterable].every(a=>(a instanceof Ctor))){
 					super(iterable);
@@ -29,13 +59,6 @@ function TypedMap(Ctor, args){
 			}
 			else{
 				super();
-			}
-			
-			if(args){
-				autoinit = autoinit !== false;
-			}
-			else{
-				autoinit = autoinit || false;
 			}
 			
 			this._autoinit = autoinit;
@@ -85,6 +108,10 @@ function TypedMap(Ctor, args){
 			return new Map(this);
 		}
 	};
+	
+	if(key){
+		cashedClasses.set(key, TMap);
+	}
 	
 	return TMap;
 }
