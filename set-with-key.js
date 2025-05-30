@@ -15,9 +15,44 @@ class SetWithKey{
 		if(this._map.has(key)){
 			return this._map.get(key);
 		}
-		this.set(key, item);
+		this._map.set(key, item);
 		return item;
 	}
+	
+	clear(){
+		this.map.clear()
+	}
+	
+	delete(item){
+		if(typeof item !== 'string'){
+			item = item.key;
+		}
+		return this._map.delete(item);
+	}
+	
+	*entries(){
+		for(let [key, value] of this._map.entries()){
+			yield [value, value];
+		}
+	}
+	
+	forEach(callback, context){
+		context = context || this;
+		for(let [key, value] of this._map.entries()){
+			callback.call(value, value, this);
+		}
+	}	
+	
+
+	keys(){
+		return this._map.values();
+	}
+	
+	values(){
+		return this._map.values();
+	}
+	
+		
 	get(item){
 		if(typeof item !== 'string'){
 			item = item.key;
